@@ -6,6 +6,7 @@
 --*/
 
 local liftheavy_carrier;
+local liftheavy_effect;
 
 public func IsCarryHeavy() { return true; }
 public func IsInvInteract() { return true; }
@@ -114,7 +115,7 @@ func FxIntLiftHeavyTimer(object clonk, proplist effect, int timer)
 	//When the clonk has finished lifting, remove movement-restrictions and add carry effect
 	if(timer >= lift_heavy_time)
 	{
-		AddEffect("IntCarryHeavy", clonk, 1, 1, this);
+		liftheavy_effect = AddEffect("IntCarryHeavy", clonk, 1, 1, this);
 		// don't exit the object
 		effect.doExit = false;
 		return -1;
@@ -142,10 +143,33 @@ func FxIntLiftHeavyStop(object clonk, proplist effect, int reason, bool tmp)
 // -------------------
 // Carrying the object
 // -------------------
+func FxIntCarryHeavyStart(object clonk, proplist effect, int temp)
+{
+	if (temp) return;
+	clonk->DisableScale();
+	clonk->DisableHangle();
+	var throw = clonk.ThrowSpeed;
+	if (throw < 150) return; // I know this may be bad in some situations and result in normal throwing speed
+	// If so, see it as an easter egg exploit!
+	clonk.ThrowSpeed -= 150;
+	effect.throw = throw - clonk.ThrowSpeed;
+}
+
 func FxIntCarryHeavyTimer(object clonk, proplist effect, int timer)
 {
+	if (!this) return -1;
 	//Delete this effect if not contained in the clonk anymore
 	if(Contained() != clonk) return -1;
+}
+
+func FxIntCarryHeavyStop(object clonk, proplist effect, int reason, bool temp)
+{
+	if (temp) return;
+	clonk->EnableScale();
+	clonk->EnableHangle();
+	clonk.ThrowSpeed += effect.throw;
+	effect.throw = 0; // Failsafe
+	liftheavy_effect = nil;
 }
 
 // ------------------
@@ -265,10 +289,15 @@ func Departure(object obj)
 	if(!liftheavy_carrier)
 		return;
 	
+	if (GetEffect("IntCarryHeavy", obj)) RemoveEffect("IntCarryHeavy", obj);
 	liftheavy_carrier = nil;
 	return _inherited(obj, ...);
 }
 
+func Destruction()
+{
+	if (liftheavy_effect) RemoveEffect(nil,nil, liftheavy_effect);
+}
 
 // Cannot pickup other carryheavy objects (is that really what you intended, Ringwaul?)
 func RejectCollect(id collectid, object collect)
