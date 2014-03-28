@@ -1,0 +1,3 @@
+Name=Tutorial Goal
+Description=Replace this string by script.
+
