@@ -264,7 +264,6 @@ private func InitCaveExit()
 private func InitVegetation()
 {
 	PlaceGrass(85);
-	PlaceObjects(Rock, 35 + Random(10),"Earth");
 	PlaceObjects(Firestone, 25 + Random(5), "Earth");
 	PlaceObjects(Loam, 15 + Random(5), "Earth");
 	return;

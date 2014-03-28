@@ -1,0 +1,70 @@
+[Developer/Maintainer]
+Maikel 
+
+[Folder Information]
+This is the introduction to OpenClonk for new players, it will contain a short story line and the explanation
+of all relevant controls in OpenClonk.
+
+[Information for developers]
+If you want to contribute to this folder please contact the maintainer (this does not hold for bugfixes).
+
+
+[List of Todos]
+
+[Tutorial 1: Wandering Wipf]
+*Block clonk movement during first messages.
+*Check wipf movement at elevator top.
+*Disable inventory for the clonk.
+*Disable interaction for clonk.
+
+[Tutorial 2: Bombing Barriers]
+*Block clonks movement in bridge scene.
+*Improve wipf movement throughout the map, especially crossing the bridge.
+*All mushrooms should be free to be picked up.
+*Add vegetation
+*Improve the easteregg, bushes should already have berries.
+
+
+[General Tutorial Concept]
+Create a short adventure with a basic story line where the player is gradually learning the controls of OpenClonk. The general elements involve a wipf, he is the little animal friend of the clonk and shows the path most of the times. Other elements are exploring, settlement and battles.
+
+[Tutorial Story Line] (every * is one tutorial)
+* Clonk is stranded with its wipf on a small beach. The wipf runs off into a cave and the player needs to follow him to the end of the tutorial, where they are reunited. 
+* After being reunited the wipf decides to run off again, and is now trapped and lost. The player will need to find and free him, after that the wipf needs to be fed to strengthen him. Finally the player and the wipf continue their journey to the end of the scenario.
+* The player then walks together with the wipf into a settlement with a destroyed wipf statue (first introduction with the evil wipf fraction). The statue will be repaired using some metal melted from coal and ore and some wood from trees.
+* Construction of a defense tower against attacks from the evil wipf fraction.
+* Construction of sword and bow at weapon smith and training against straw men and balloons.
+* Attack of the evil wipf fraction.
+* Building an attack strategy for attacking the evil wipf castle: Blimp and catapult.
+* Attacking the evil wipf castle.
+
+[Tutorial Explanations]
+
+[Tutorial 01: Movement (WASD)]
+* Clonk HUD 
+* Walking and jumping with WASD
+* Scaling, wall jump and hangling
+* Swimming, diving and breath 
+
+[Tutorial 02: Inventory & Items]
+* Collection of objects
+* Inventory control
+* Throwing items: firestones
+* Dropping items: mushroom/berries
+* Using items: shovel, loam
+
+[Tutorial 03: Contents & Production]
+* Contents menu: foundry and construction site
+* Production menu: foundry
+* Using items: dynamite, axe
+
+[Tutorial 04: Interaction ]
+* Construction: hammer -> defense tower
+* Interaction: moving a lorry with materials for the tower
+
+[Stuff to explain]
+* Liquids and pumping
+* Carry heavy objects
+* Felling trees
+* handling weapons: sword, shield, bow
+* controlling vehicles: blimp, catapult, airplane
