@@ -23,6 +23,7 @@ If you want to contribute to this folder please contact the maintainer (this doe
 *All mushrooms should be free to be picked up.
 *Add vegetation
 *Improve the easteregg, bushes should already have berries.
+*Disable interaction for clonk.
 
 
 [General Tutorial Concept]
