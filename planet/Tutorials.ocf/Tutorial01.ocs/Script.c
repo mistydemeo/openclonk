@@ -288,8 +288,8 @@ protected func InitializePlayer(int plr)
 	var clonk = GetCrew(plr, 0);
 	clonk->SetPosition(60, 606);
 	var effect = AddEffect("ClonkRestore", clonk, 100, 10);
-	effect.var1 = 60;
-	effect.var2 = 606;
+	effect.to_x = 60;
+	effect.to_y = 606;
 	
 	// Add an effect to the clonk to track the goal.
 	AddEffect("TrackGoal", clonk, 100, 2);
@@ -488,7 +488,17 @@ protected func OnGuideMessageRemoved(int plr, int index)
 
 global func FxClonkRestoreTimer(object target, proplist effect, int time)
 {
-
+	// Respawn clonk to new location if reached certain position.
+	if (FindObject(Find_OCF(OCF_CrewMember), Find_InRect(656, 432, 40, 48)))
+	{
+		effect.to_x = 680;
+		effect.to_y = 470;             
+	}
+	if (FindObject(Find_OCF(OCF_CrewMember), Find_InRect(488, 280, 32, 48)))
+	{
+		effect.to_x = 500;
+		effect.to_y = 318;             
+	}
 	return 1;
 }
 
@@ -501,15 +511,15 @@ global func FxClonkRestoreStop(object target, effect, int reason, bool  temporar
 		var x = BoundBy(target->GetX(), 0, LandscapeWidth());
 		var y = BoundBy(target->GetY(), 0, LandscapeHeight());
 		restorer->SetPosition(x, y);
-		var to_x = effect.var1;
-		var to_y = effect.var2;
+		var to_x = effect.to_x;
+		var to_y = effect.to_y;
 		// Respawn new clonk.
 		var plr = target->GetOwner();
 		var clonk = CreateObject(Clonk, 0, 0, plr);
 		clonk->GrabObjectInfo(target);
 		SetCursor(plr, clonk);
 		clonk->DoEnergy(100000);
-		restorer->SetRestoreObject(clonk, nil, to_x, to_y, "ClonkRestore");
+		restorer->SetRestoreObject(clonk, nil, to_x, to_y, 0, "ClonkRestore");
 	}
 	return 1;
 }
