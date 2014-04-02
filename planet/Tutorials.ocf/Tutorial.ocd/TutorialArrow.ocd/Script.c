@@ -1,6 +1,8 @@
-/** Tutorial Arrow
-* Arrow to show important stuff to the player, can be created by using one of the global functions.
-* @author Sven2, Maikel
+/** 
+	Tutorial Arrow
+	Arrow to show important stuff to the player, can be created by using one of the global functions.
+	
+	@author Sven2, Maikel
 */
 
 // Remove arrow if it was showing a target object which got removed.
@@ -55,14 +57,6 @@ global func TutArrowShowTarget(object target, int angle, int dist)
 {
 	if (!target)
 		return;	
-	var container = target->Contained(), index;
-	//if (container &&
-	//    container.Prototype == Clonk &&
-	//	(index = GetIndexOf(container.inventory, target)) != -1) // Is the object inventory in a clonk?
-	//{
-	//	var itemslot = container.HUDcontroller.inventory[index];
-	//	return TutArrowShowGUIPos(itemslot->GetX(), itemslot->GetY(), -90, itemslot->GetDefHeight() / 2);
-	//}
 	if (angle == nil) 
 		angle = 135;
 	if (dist == nil) 
@@ -97,6 +91,7 @@ global func TutArrowShowGUIPos(int x, int y, int angle, int dist)
 		return;
 	// Change arrow category to C4D_Gui.
 	arrow->SetCategory(C4D_IgnoreFoW | C4D_Foreground | C4D_Parallax);
+	arrow.Plane = 2500;
 	// Display bouncing arrow, corrected for arrow size.
 	dist += 8;
 	x -= Sin(angle, dist);
@@ -125,8 +120,9 @@ global func TutArrowShowGUITarget(object target, int angle, int dist)
 	arrow.MeshTransformation = Trans_Scale(3600);
 	if (!arrow) 
 		return;
-	// Change arrow category to C4D_Gui.
+	// Change arrow category to C4D_Gui and set correct plane.
 	arrow->SetCategory(C4D_IgnoreFoW | C4D_Foreground | C4D_Parallax);
+	arrow.Plane = target.Plane;
 	// Display spinning arrow, corrected for GUI and arrow size.
 	dist += 8 + target->GetID()->GetDefHeight() / 2;
 	arrow->SetAction("Attach", target);
@@ -140,7 +136,7 @@ global func TutArrowShowGUITarget(object target, int angle, int dist)
 local Name = "$Name$";
 local MeshTransformation = [1400, 0, 0, 0, 0, 1400, 0, 0, 0, 0, 1400, 0];
 local Parallaxity = [0, 0];
-local Plane = 2500;
+local Plane = 375;
 local ActMap = {
 	Attach = {
 		Prototype = Action,

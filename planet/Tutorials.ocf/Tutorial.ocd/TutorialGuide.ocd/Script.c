@@ -1,9 +1,11 @@
-/** Tutorial Guide
-* The tutorial guide can be clicked by the player, it supplies the player with information and hints.
-* The following callbacks are made to the scenario script:
-* - \c OnGuideMessageShown(int plr, int index) when a message is shown
-* - \c OnGuideMessageRemoved(int plr, int index) when a message is removed, all events
-* @author Maikel
+/** 
+	Tutorial Guide
+	The tutorial guide can be clicked by the player, it supplies the player with information and hints.
+	The following callbacks are made to the scenario script:
+	 * OnGuideMessageShown(int plr, int index) when a message is shown
+	 * OnGuideMessageRemoved(int plr, int index) when a message is removed, all events
+	
+	@author Maikel
 */
 
 

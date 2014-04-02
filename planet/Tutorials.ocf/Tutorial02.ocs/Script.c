@@ -1,4 +1,4 @@
-/*-- 
+/**
 	Tutorial 02: Bombing Barriers
 	Author: Maikel
 	
@@ -10,7 +10,7 @@
 	 * Throwing items: firestones
 	 * Dropping items: mushroom/berries
 	 * Using items: shovel, loam
---*/
+*/
 
 
 static guide; // guide object.
@@ -151,6 +151,7 @@ private func InitAnimals()
 
 protected func InitializePlayer(int plr)
 {
+	// Position player's clonk.
 	var clonk = GetCrew(plr, 0);
 	clonk->SetPosition(40, 318);
 	var effect = AddEffect("ClonkRestore", clonk, 100, 10);

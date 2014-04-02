@@ -1,4 +1,4 @@
-/*-- 
+/**
 	Tutorial 01: Wandering Wipf
 	Author: Maikel
 	
@@ -9,7 +9,7 @@
 	 * Walking and jumping with WASD
 	 * Scaling, wall jump and hangling
 	 * Swimming, diving and breath 
---*/
+*/
 
 static guide; // guide object
 
@@ -285,6 +285,7 @@ private func InitAnimals()
 
 protected func InitializePlayer(int plr)
 {
+	// Position player's clonk.
 	var clonk = GetCrew(plr, 0);
 	clonk->SetPosition(60, 606);
 	var effect = AddEffect("ClonkRestore", clonk, 100, 10);

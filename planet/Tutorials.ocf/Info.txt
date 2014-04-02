@@ -25,6 +25,11 @@ If you want to contribute to this folder please contact the maintainer (this doe
 *Improve the easteregg, bushes should already have berries.
 *Disable interaction for clonk.
 
+[Tutorial 3: ]
+
+[Tutorial 4: ]
+*Interaction with AI to obtain a hammer.
+
 
 [General Tutorial Concept]
 Create a short adventure with a basic story line where the player is gradually learning the controls of OpenClonk. The general elements involve a wipf, he is the little animal friend of the clonk and shows the path most of the times. Other elements are exploring, settlement and battles.
@@ -54,14 +59,19 @@ Create a short adventure with a basic story line where the player is gradually l
 * Dropping items: mushroom/berries
 * Using items: shovel, loam
 
-[Tutorial 03: Contents & Production]
+[Tutorial 03: Contents, Production & Construction]
 * Contents menu: foundry and construction site
 * Production menu: foundry
 * Using items: dynamite, axe
 
-[Tutorial 04: Interaction ]
-* Construction: hammer -> defense tower
+[Tutorial 04: Interaction & Ownership]
+* Construction: hammer->Flagpole
+* Ownership: influence on power
 * Interaction: moving a lorry with materials for the tower
+
+[Tutorial 05: Production and weapon training]
+* Production: sword and bow
+* Training: sword and bow
 
 [Stuff to explain]
 * Liquids and pumping

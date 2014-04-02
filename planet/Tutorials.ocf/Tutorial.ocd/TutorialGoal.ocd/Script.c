@@ -1,10 +1,9 @@
-/*--
-		Tutorial goal
-		Author: Maikel
-		
-		The goal is fulfilled if the tutorial script says so. This is 
-		just a placeholder object, effectively.
---*/
+/**
+	Tutorial goal
+	The goal is fulfilled if the tutorial script says so. This is just a placeholder object, effectively.
+	
+	@author Maikel
+*/
 
 
 #include Library_Goal
