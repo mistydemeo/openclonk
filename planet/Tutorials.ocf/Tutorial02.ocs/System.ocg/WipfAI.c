@@ -33,14 +33,28 @@ protected func FxTutorialWipfTimer(object target, proplist effect, int time)
 	{
 		Collect(food, true);
 		had_food = true;	
-		SetCommand("Follow", FindObject(Find_OCF(OCF_CrewMember)));
-		effect.Sequence = "WalkToBridge";
-	}	
-	// Follow clonk until burned bridge.
-	if (effect.Sequence == "WalkToBridge" && Inside(GetX(), 760, 816) && Inside(GetY(), 496, 528))
+		//SetCommand("Follow", FindObject(Find_OCF(OCF_CrewMember)));
+		effect.Sequence = "MoveToLoam";
+	}
+	// Move down to the loam.
+	if (effect.Sequence == "MoveToLoam" )
+	{
+		SetCommand("MoveTo", nil, 488, 620);
+		if (Inside(GetX(), 472, 520) && Inside(GetY(), 600, 632) && PathFree(484, 616, 544, 602))
+			effect.Sequence = "MoveToBridge";
+	}
+	// Move to the bridge.
+	if (effect.Sequence == "MoveToBridge")
+	{
+		SetCommand("MoveTo", nil, 796, 524);
+		var clonk = FindObject(Find_OCF(OCF_CrewMember), Find_InRect(AbsX(744), AbsY(480), 80, 48));
+		if (Inside(GetX(), 760, 816) && Inside(GetY(), 496, 528) && clonk)
+			effect.Sequence = "MoveToSettlement";
+	}
+	// Move to settlement.
+	if (effect.Sequence == "MoveToSettlement")
 	{
 		SetCommand("MoveTo", nil, 992, 524);
-		effect.Sequence = "MoveToSettlement";
 	}
 	return 1;
 }

@@ -10,6 +10,7 @@
 	 * Throwing items: firestones
 	 * Dropping items: mushroom/berries
 	 * Using items: shovel, loam
+	 * Liquids: acid
 */
 
 
@@ -166,7 +167,7 @@ protected func InitializePlayer(int plr)
 	SetPlayerZoomByViewRange(plr, 400, nil, PLRZOOM_Direct);
 
 	// Create tutorial guide, add messages, show first.
-	guide = CreateObject(TutorialGuide, 0, 0 , plr);
+	guide = CreateObject(TutorialGuide, 0, 0, plr);
 	guide->AddGuideMessage("$MsgTutorialIntro$");
 	guide->ShowGuideMessage(0);
 	AddEffect("TutorialShovel", nil, 100, 5);
@@ -306,12 +307,16 @@ global func FxTutorialDigOutLoamTimer()
 
 global func FxTutorialFragileBridgeTimer()
 {
-	if (FindObject(Find_OCF(OCF_CrewMember), Find_InRect(744, 480, 80, 48)))
+	var clonk = FindObject(Find_OCF(OCF_CrewMember), Find_InRect(744, 480, 80, 48));
+	if (clonk)
 	{
 		guide->AddGuideMessage("$MsgTutorialFragileBridge$");
 		guide->ShowGuideMessage(8);
 		// Stop the controls of the clonk for a few seconds.
-		AddEffect("TutorialWaitForBridge", nil, 100, 5);
+		DisablePlrControls(clonk->GetOwner());
+		clonk->SetComDir(COMD_Stop);
+		var effect = AddEffect("TutorialWaitForBridge", nil, 100, 5);
+		effect.plr = clonk->GetOwner();
 		return -1;
 	}
 	return 1;
@@ -324,6 +329,7 @@ global func FxTutorialWaitForBridgeTimer(object target, proplist effect, int tim
 		guide->AddGuideMessage("$MsgTutorialMakeLoamBridge$");
 		guide->ShowGuideMessage(9);
 		// Start the controls of the clonk again.
+		EnablePlrControls(effect.plr);
 		return -1;
 	}
 	return 1;

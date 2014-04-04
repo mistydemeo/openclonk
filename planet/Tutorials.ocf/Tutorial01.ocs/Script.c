@@ -9,6 +9,7 @@
 	 * Walking and jumping with WASD
 	 * Scaling, wall jump and hangling
 	 * Swimming, diving and breath 
+	 * Liquids: water
 */
 
 static guide; // guide object
@@ -292,15 +293,19 @@ protected func InitializePlayer(int plr)
 	effect.to_x = 60;
 	effect.to_y = 606;
 	
+	// Player controls disabled at the start.
+	DisablePlrControls(plr);
+	
 	// Add an effect to the clonk to track the goal.
-	AddEffect("TrackGoal", clonk, 100, 2);
+	var track_goal = AddEffect("TrackGoal", clonk, 100, 2);
+	track_goal.plr = plr;
 
 	// Standard player zoom for tutorials, player is not allowed to zoom in/out.
 	SetPlayerViewLock(plr, true);
-	//SetPlayerZoomByViewRange(plr, 400, nil, PLRZOOM_Direct | PLRZOOM_LimitMin | PLRZOOM_LimitMax);
+	SetPlayerZoomByViewRange(plr, 400, nil, PLRZOOM_Direct | PLRZOOM_LimitMin | PLRZOOM_LimitMax);
 	
 	// Create tutorial guide, add messages, show first.
-	guide = CreateObject(TutorialGuide, 0, 0 , plr);
+	guide = CreateObject(TutorialGuide, 0, 0, plr);
 	guide->AddGuideMessage("$MsgTutorialWelcome$");
 	guide->AddGuideMessage("$MsgTutorialHUD$");
 	guide->AddGuideMessage("$MsgTutorialFollowFriend$");
@@ -311,11 +316,10 @@ protected func InitializePlayer(int plr)
 
 /*-- Intro, Tutorial Goal & Outro --*/
 
-private func OnFinishedTutorialIntro()
+private func OnFinishedTutorialIntro(int plr)
 {
 	// enable crew
-	//target->SetCrewEnabled(true);
-	//SetCursor(target->GetOwner(), target);
+	EnablePlrControls(plr);
 	
 	// start the wipf
 	FindObject(Find_ID(Wipf))->StartMoving();
@@ -327,7 +331,8 @@ global func FxTrackGoalTimer(object target, proplist effect, int time)
 	{
 		if (FindObject(Find_ID(Wipf), Find_Distance(15, target->GetX(), target->GetY())))
 		{
-			AddEffect("GoalOutro", target, 100, 5);
+			var outro = AddEffect("GoalOutro", target, 100, 5);
+			outro.plr = effect.plr;
 			return -1;	
 		}		
 	}
@@ -344,7 +349,7 @@ global func FxGoalOutroStart(object target, proplist effect, int temp)
 	guide->ShowGuideMessage(8);
 		
 	// Halt clonk and disable player controls.	
-	target->SetCrewEnabled(false);
+	DisablePlrControls(effect.plr);
 	target->SetComDir(COMD_Stop);
 	
 	// Find wipf and enter it into the clonk.	
@@ -374,6 +379,9 @@ global func FxGoalOutroStop(object target, proplist effect, int reason, bool tem
 {
 	if (temp) 
 		return;
+		
+	// Enable player controls again.
+	EnablePlrControls(effect.plr);	
 	
 	target->DetachMesh(effect.mesh);
 	target->StopAnimation(effect.anim);
@@ -454,7 +462,7 @@ protected func OnGuideMessageShown(int plr, int index)
 	// Show the clonks friend: the wipf.	
 	if (index == 2)
 	{
-		OnFinishedTutorialIntro();
+		OnFinishedTutorialIntro(plr);
 		TutArrowShowTarget(FindObject(Find_ID(Wipf))); 	
 	}
 	// Show wall to climb.

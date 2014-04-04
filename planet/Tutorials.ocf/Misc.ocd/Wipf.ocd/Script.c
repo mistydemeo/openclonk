@@ -479,7 +479,7 @@ func FxIntWalkTimer(target, effect, time)
 	}
 	if(GetComDir() == COMD_Stop || GetComDir() == COMD_None) return 1;
 	// movement follows a sine curve
-	var s = Abs(Sin(++effect.cycle * 10, 100));
+	var s = Abs(Sin(++effect.cycle * 10, 160));
 	ActMap.Walk.Speed = s * 3;
 	
 	// particles
@@ -557,9 +557,9 @@ local ActMap = {
 		Prototype = Action,
 		Name = "Walk",
 		Procedure = DFA_WALK,
-		Accel = 18,
-		Decel = 22,
-		Speed = 240,
+		Accel = 32,
+		Decel = 44,
+		Speed = 300,
 		Directions = 2,
 		FlipDir = 0,
 		Length = 1,
