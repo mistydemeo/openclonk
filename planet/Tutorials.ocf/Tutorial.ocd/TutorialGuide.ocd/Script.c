@@ -64,6 +64,21 @@ public func ShowGuideMessage(int show_index)
 	return;
 }
 
+/* Hides the guide and its menu to the player.
+*/
+public func HideGuide()
+{
+	CloseGuideMenu();
+	return;
+}
+
+protected func Destruction()
+{
+	CloseGuideMenu();
+	return;
+}
+
+
 /* Menu implementation */
 
 // Menu IDs.
@@ -229,6 +244,11 @@ private func UpdateGuideMenu(string guide_message, bool has_next, bool has_prev)
 	{	
 		CustomGuiClose(id_menu, id_prev, this);
 	}*/
+}
+
+private func CloseGuideMenu()
+{
+	CustomGuiClose(id_menu, nil, this);
 }
 
 // Menu callback: the player has clicked on the guide.

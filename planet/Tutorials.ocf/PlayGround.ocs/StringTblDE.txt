@@ -1,0 +1,6 @@
+# Goal Description
+MsgGoalName=Spielplatz
+MsgGoalDescription=Nur expirementieren und Spass haben!
+
+# Tutorial messages
+MsgPlaygroundWelcome=Welcome to the playground. You have mastered all tutorials, which gives you access to all items in OpenClonk! Open a menu with [I] from which you can choose any item to spawn. 
