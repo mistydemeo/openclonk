@@ -15,6 +15,7 @@ protected func Initialize()
 	return;
 }
 
+
 /*-- Player Handling --*/
 
 protected func InitializePlayer(int plr)
@@ -29,6 +30,7 @@ protected func InitializePlayer(int plr)
 	// Standard player zoom for tutorials.
 	SetPlayerViewLock(plr, true);
 	SetPlayerZoomByViewRange(plr, 400, nil, PLRZOOM_Direct);
+	SetPlayerZoomByViewRange(plr, 1200, nil, PLRZOOM_LimitMax);
 
 	// Create tutorial guide, add messages, show first.
 	var guide = CreateObject(TutorialGuide, 0, 0 , plr);
@@ -58,7 +60,7 @@ global func FxRemoveGuideStop(object target, effect, int reason, bool  temporary
 }
 
 
-/*-- Clonk restoring --*/
+/*-- Clonk Restoring --*/
 
 global func FxClonkRestoreTimer(object target, proplist effect, int time)
 {
