@@ -1567,6 +1567,7 @@ static bool FnCreateParticle(C4PropList * _this, C4String *name, C4Value x, C4Va
 
 static bool FnClearParticles(C4PropList * _this)
 {
+#ifndef USE_CONSOLE
 	C4Object *obj;
 	if (obj = Object(_this))
 	{
@@ -1580,7 +1581,7 @@ static bool FnClearParticles(C4PropList * _this)
 		if (::Particles.GetGlobalParticles())
 			::Particles.GetGlobalParticles()->Clear();
 	}
-
+#endif
 	// always return true
 	return true;
 }
@@ -2649,6 +2650,7 @@ C4ScriptConstDef C4ScriptGameConstMap[]=
 	{ "FX_Call_DmgScript"         ,C4V_Int,      C4FxCall_DmgScript         }, // damage through script call
 	{ "FX_Call_DmgBlast"          ,C4V_Int,      C4FxCall_DmgBlast          }, // damage through blast
 	{ "FX_Call_DmgFire"           ,C4V_Int,      C4FxCall_DmgFire           }, // damage through fire
+	{ "FX_Call_DmgChop"           ,C4V_Int,      C4FxCall_DmgChop           }, // damage through chopping
 	{ "FX_Call_Energy"            ,C4V_Int,      32                         }, // bitmask for generic energy loss
 	{ "FX_Call_EngScript"         ,C4V_Int,      C4FxCall_EngScript         }, // energy loss through script call
 	{ "FX_Call_EngBlast"          ,C4V_Int,      C4FxCall_EngBlast          }, // energy loss through blast
