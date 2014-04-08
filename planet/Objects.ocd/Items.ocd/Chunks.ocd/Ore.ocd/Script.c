@@ -11,10 +11,6 @@ protected func Hit(x, y)
 	return true;
 }
 
-public func ForceEnterProducer(id id)
-{
-	if (id == Foundry) return true;
-}
 public func IsChunk() { return true; }
 
 func Definition(def) {
