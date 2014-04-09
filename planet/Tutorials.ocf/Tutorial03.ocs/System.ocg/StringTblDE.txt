@@ -1,0 +1,1 @@
+TxtNoConstructionHere=Der Untergrund eignet sich nicht mehr zur Konstruktion!

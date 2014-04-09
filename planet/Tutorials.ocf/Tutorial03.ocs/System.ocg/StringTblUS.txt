@@ -1,0 +1,1 @@
+TxtNoConstructionHere=The building ground is not fit for construction anymore!
