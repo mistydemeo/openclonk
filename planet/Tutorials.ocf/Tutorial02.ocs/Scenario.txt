@@ -1,7 +1,7 @@
 [Head]
 Icon=3
 Title=Tutorial02
-Version=5,2,0,1
+Version=5,4,0,0
 MaxPlayer=1
 Difficulty=2
 
@@ -9,15 +9,6 @@ Difficulty=2
 Definition1=Objects.ocd
 
 [Player1]
-Crew=Clonk=1
-
-[Player2]
-Crew=Clonk=1
-
-[Player3]
-Crew=Clonk=1
-
-[Player4]
 Crew=Clonk=1
 
 [Landscape]

@@ -6,7 +6,7 @@ This is the introduction to OpenClonk for new players, it will contain a short s
 of all relevant controls in OpenClonk.
 
 [Information for developers]
-If you want to contribute to this folder please contact the maintainer (this does not hold for bugfixes).
+If you want to contribute to this folder please contact the maintainer (this does not hold for bug fixes).
 
 
 [List of Todos]
