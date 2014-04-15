@@ -1,0 +1,19 @@
+# Goal Description
+MsgGoalName=Produce Weapons
+MsgGoalDescription=Provide the elevator with power and move the lorry to the armory, then produce a sword and a bow.
+
+# Dialogue options
+MsgNextTutorial=&Next tutorial
+MsgNextTutorialDesc=Start the next tutorial scenario.
+MsgRepeatRound=&Repeat this round
+MsgRepeatRoundDesc=Restart this scenario.
+
+# Tutorial messages
+MsgTutorialIntro=There is still lots of rebuilding to be done and rumors have it that the evil fraction is planning another attack. So let's start with constructing a flagpole over there. The flagpole marks your reign and allows power to be distributed between producers and consumers. Walk to the construction site.
+MsgTutorialConstruct=There is a hammer in your inventory, press [LMB] to open the construction menu. From this menu you can select a building, the construction costs and properties are displayed when hovering over them. Select the flagpole, the previewer opens and click again to place the construction site.
+MsgTutorialMaterials=Well placed, now you need to add the construction materials to the construction site and the structure will be built automatically. Get some wood and metal and add it to the site via the content menu by pressing [E] in front of the construction site.
+MsgTutorialElevator=Now the elevator is inside the reign of this settlement again, you can start to use it. Grab onto the elevator while standing on the case and press [Space]. You can then move the elevator up/down by pressing [W]/[S]. Drive the elevator completely down for now.
+MsgTutorialBringLorry=You can let go of the elevator again by pressing [Space]. A lorry with materials can be found on the left, grab the lorry with [Space] and push it to the elevator to bring it up. There still is one hurdle between the elevator and the lorry, but I am sure you can figure your way past it using the lorry's contents!
+MsgTutorialLorryOnElevator=It's remarkable how much you can achieve with loam! Move the lorry into the elevator case, then grab the elevator and move it up to the level of the armory, stop there and grab the lorry again and push it towards the armory.
+MsgTutorialProduceWeapons=Now that you have the materials at the armory, produce some weapons to defend yourself against the evil fraction. Transfer some wood and metal from the lorry to the armory via the content menu [E]. Then under the production menu select the sword and the bow to start producing these weapons.  
+MsgTutorialCompleted=Well done! You produced a sword and a bow, proceed to the next tutorial to learn how to use them.

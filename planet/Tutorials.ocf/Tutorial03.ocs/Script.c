@@ -38,7 +38,7 @@ protected func Initialize()
 protected func OnGoalsFulfilled()
 {
 	// Dialogue options -> next round.
-	//SetNextMission("Tutorials.ocf\\Tutorial04.ocs", "$MsgNextTutorial$", "$MsgNextTutorialDesc$");
+	SetNextMission("Tutorials.ocf\\Tutorial04.ocs", "$MsgNextTutorial$", "$MsgNextTutorialDesc$");
 	// Normal scenario ending by goal library.
 	return false;
 }

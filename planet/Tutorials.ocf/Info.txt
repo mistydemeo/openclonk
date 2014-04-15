@@ -26,6 +26,8 @@ If you want to contribute to this folder please contact the maintainer (this doe
 *Disable interaction for clonk.
 
 [Tutorial 3: ]
+*Prevent production of loam.
+*Fix tutorial message after coal drop while already selected production of metal/gold.
 
 [Tutorial 4: ]
 *Interaction with AI to obtain a hammer.
