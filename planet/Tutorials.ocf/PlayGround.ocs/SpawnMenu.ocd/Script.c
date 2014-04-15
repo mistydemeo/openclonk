@@ -8,22 +8,19 @@
 
 /*-- ClonkControl Interface --*/
 
-public func Close() { return RemoveObject(); }
+// Necessary callbacks for the ClonkControl library.
 public func IsSpawnMenu() { return true; }
+public func Close() { return RemoveObject(); }
 public func Show() { this.Visibility = VIS_Owner; return true; }
 public func Hide() { this.Visibility = VIS_None; return true; }
 
-func Construction()
-{
-
-}
-
+// Close the menu when this object is removed.
 func Destruction()
 {
 	CloseSpawnMenu();
 }
 
-// used as a static function
+// Used as a static function called by the ClonkControl library.
 func CreateFor(object cursor)
 {
 	var obj = CreateObject(GUI_SpawnMenu, AbsX(0), AbsY(0), cursor->GetOwner());
@@ -35,6 +32,17 @@ func CreateFor(object cursor)
 
 
 /*-- Menu Handling --*/
+
+// Menu sizes in percent relative to the screen width and height.
+static const SPAWNMENU_Width = 50;
+static const SPAWNMENU_Height = 72;
+// Number of items per row and minimal size.
+static const SPAWNMENU_RowItems = 8;
+static const SPAWNMENU_MinItemSize = 6;
+// Background colors for hovering and bars and description.
+static const SPAWNMENU_HoverColor = 0x50ffffff;
+static const SPAWNMENU_BarColor = 0x50888888;
+static const SPAWNMENU_DescColor = 0xffaa0000;
 
 local menu_target;
 local menu_controller;
@@ -55,7 +63,7 @@ public func OpenSpawnMenu(object clonk)
 	
 	// Width should be a multiple of 6 and 8 em.
 	// TODO: the 2 is added for a small margin.
-	var menu_width = 24 * 2 + 2; 
+	var menu_width = 24 * 2; 
 	// Height should be a multiple of 6 em + 24 em.
 	var menu_height = 10 + 14 + 6 * 8;
 	
@@ -123,7 +131,7 @@ private func MakeCategoryBar()
 			Top = "0%",
 			Bottom = "8em",
 			Symbol = cat.Symbol,
-			BackgroundColor = {Std = 0, Hover = 0x50ffffff},
+			BackgroundColor = {Std = 0, Hover = SPAWNMENU_HoverColor},
 			OnMouseIn = GuiAction_SetTag("Hover"),
 			OnMouseOut = GuiAction_SetTag("Std"),
 			OnClick = GuiAction_Call(this, "MenuShowCategory", cat)		
@@ -147,7 +155,7 @@ private func MakeObjectGrid()
 		Bottom = "10em",
 		Text = "",
 		Style = GUI_TextHCenter | GUI_TextVCenter,
-		BackgroundColor = {Std = 0x50888888}
+		BackgroundColor = {Std = SPAWNMENU_BarColor}
 	};
 	// Add the grid to the menu.
 	menu.grid_desc = grid_desc;
@@ -158,9 +166,9 @@ private func MakeObjectGrid()
 		Target = menu_target,
 		ID = 1000,		
 		Left = "0%",
-		Right = "100%",
+		Right = "100%+0.1em",
 		Top = "10em",
-		Bottom = "100%-14em",
+		Bottom = "100%-14.01em",
 		Style = GUI_GridLayout,
 		BackgroundColor = {Std = 0},
 		items = []
@@ -192,16 +200,16 @@ private func MakeInfoBar()
 		Bottom = "2em",
 		Text = "",
 		Style = GUI_TextHCenter | GUI_TextVCenter,
-		BackgroundColor = {Std = 0x50888888}
+		BackgroundColor = {Std = SPAWNMENU_BarColor}
 	};
 	bar.icon = 
 	{
 		Target = menu_target,
 		ID = 10002,	
-		Left = "0%",
-		Right = "12em",
-		Top = "2em",
-		Bottom = "14em",	
+		Left = "1em",
+		Right = "11em",
+		Top = "3em",
+		Bottom = "13em",	
 	};
 	bar.description = 
 	{
@@ -256,7 +264,7 @@ private func MenuShowCategory(proplist category)
 			Right = "+6em",
 			Bottom = "+6em", 
 			Symbol = item,
-			BackgroundColor = {Std = 0, Hover = 0x50ffffff},
+			BackgroundColor = {Std = 0, Hover = SPAWNMENU_HoverColor},
 			OnMouseIn = [GuiAction_SetTag("Hover"), GuiAction_Call(this, "MenuShowInformation", item)],
 			OnMouseOut = [GuiAction_SetTag("Std"), GuiAction_Call(this, "MenuHideInformation", item)],
 			OnClick = GuiAction_Call(this, "MenuSpawnObject", item)
@@ -286,14 +294,14 @@ public func MenuShowInformation(id obj_id)
 	// Update description.
 	var desc = "";
 	if (obj_id && obj_id.Description)
-		desc = Format("$MsgDescription$", obj_id.Description);
+		desc = Format("$MsgDescription$", SPAWNMENU_DescColor, obj_id.Description);
 	menu.info_bar.description.Text = desc;
 	CustomGuiUpdate(menu.info_bar.description, menu_id, menu.info_bar.description.ID, menu_target);
 	
 	// Update usage.
 	var usage = "";
 	if (obj_id && obj_id.UsageHelp)
-		usage = Format("$MsgUsage$", obj_id.UsageHelp);
+		usage = Format("$MsgUsage$", SPAWNMENU_DescColor, obj_id.UsageHelp);
 	menu.info_bar.usage.Text = usage;
 	CustomGuiUpdate(menu.info_bar.usage, menu_id, menu.info_bar.usage.ID, menu_target);
 }
@@ -443,6 +451,7 @@ private func SpawnObject(id obj_id)
 
 	return;
 }
+
 
 /*-- Proplist --*/
 

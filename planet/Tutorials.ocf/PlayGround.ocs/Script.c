@@ -27,10 +27,15 @@ protected func InitializePlayer(int plr)
 	effect.to_x = 624;
 	effect.to_y = 526;
 	
-	// Standard player zoom for tutorials.
+	// Standard player zoom for tutorials, set max zoom roughly up to scenario boundaries.
 	SetPlayerViewLock(plr, true);
 	SetPlayerZoomByViewRange(plr, 400, nil, PLRZOOM_Direct);
 	SetPlayerZoomByViewRange(plr, 1200, nil, PLRZOOM_LimitMax);
+	
+	// Give the player all construction plans.
+	var index = 0, def;
+	while (def = GetDefinition(index++))
+		SetPlrKnowledge(plr, def);
 
 	// Create tutorial guide, add messages, show first.
 	var guide = CreateObject(TutorialGuide, 0, 0 , plr);

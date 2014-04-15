@@ -2,5 +2,5 @@ Name=SpawnMenu
 Description=Let's the player spawn all available objects in OpenClonk.
 
 MsgCategory=Spawn from category: %s
-MsgDescription=Description: %s
-MsgUsage=Usage: %s
+MsgDescription=<c %x>Description:</c> %s
+MsgUsage=<c %x>Usage:</c> %s
